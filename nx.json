@@ -27,6 +27,13 @@
     ]
   },
   "projects": {
+    "frontend-admin": {
+      "tags": ["scope:frontend-admin"]
+    },
+    "frontend-admin-e2e": {
+      "tags": [],
+      "implicitDependencies": ["frontend-admin"]
+    },
     "frontend-client": {
       "tags": ["scope:frontend-client"]
     },
