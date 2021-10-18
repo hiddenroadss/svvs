@@ -1,6 +1,57 @@
 {
   "version": 1,
   "projects": {
+    "backend-api": {
+      "root": "apps/backend/api",
+      "sourceRoot": "apps/backend/api/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/backend/api",
+            "main": "apps/backend/api/src/main.ts",
+            "tsConfig": "apps/backend/api/tsconfig.app.json",
+            "assets": ["apps/backend/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/backend/api/src/environments/environment.ts",
+                  "with": "apps/backend/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "backend-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/backend/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/backend/api"],
+          "options": {
+            "jestConfig": "apps/backend/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "frontend-admin": {
       "projectType": "application",
       "root": "apps/frontend/admin",
@@ -9,9 +60,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/frontend/admin",
             "index": "apps/frontend/admin/src/index.html",
@@ -23,9 +72,7 @@
               "apps/frontend/admin/src/favicon.ico",
               "apps/frontend/admin/src/assets"
             ],
-            "styles": [
-              "apps/frontend/admin/src/styles.scss"
-            ],
+            "styles": ["apps/frontend/admin/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -71,6 +118,9 @@
               "browserTarget": "frontend-admin:build:development"
             }
           },
+          "options": {
+            "proxyConfig": "apps/frontend/admin/proxy.conf.json"
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
@@ -90,9 +140,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/frontend/admin"
-          ],
+          "outputs": ["coverage/apps/frontend/admin"],
           "options": {
             "jestConfig": "apps/frontend/admin/jest.config.js",
             "passWithNoTests": true
@@ -119,13 +167,9 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/frontend/admin-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/frontend/admin-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -138,9 +182,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/frontend/client",
             "index": "apps/frontend/client/src/index.html",
@@ -152,9 +194,7 @@
               "apps/frontend/client/src/favicon.ico",
               "apps/frontend/client/src/assets"
             ],
-            "styles": [
-              "apps/frontend/client/src/styles.scss"
-            ],
+            "styles": ["apps/frontend/client/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -200,7 +240,10 @@
               "browserTarget": "frontend-client:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "apps/frontend/client/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -219,9 +262,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/frontend/client"
-          ],
+          "outputs": ["coverage/apps/frontend/client"],
           "options": {
             "jestConfig": "apps/frontend/client/jest.config.js",
             "passWithNoTests": true
@@ -249,13 +290,9 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/frontend-client-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/frontend-client-e2e/**/*.{js,ts}"]
           }
         }
       }
