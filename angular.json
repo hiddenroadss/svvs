@@ -72,7 +72,10 @@
               "apps/frontend/admin/src/favicon.ico",
               "apps/frontend/admin/src/assets"
             ],
-            "styles": ["apps/frontend/admin/src/styles.scss"],
+            "styles": ["apps/frontend/admin/src/styles/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["apps/frontend/admin/src/styles"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -296,6 +299,31 @@
           "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": ["apps/frontend-client-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "ui-components": {
+      "projectType": "library",
+      "root": "libs/ui-components",
+      "sourceRoot": "libs/ui-components/src",
+      "prefix": "svvs",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-components"],
+          "options": {
+            "jestConfig": "libs/ui-components/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-components/src/**/*.ts",
+              "libs/ui-components/src/**/*.html"
+            ]
           }
         }
       }

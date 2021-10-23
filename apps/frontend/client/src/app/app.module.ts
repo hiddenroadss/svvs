@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { UiComponentsModule } from '@svvs/ui-components';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, MatButtonModule, MatCardModule],
+  imports: [BrowserModule, UiComponentsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

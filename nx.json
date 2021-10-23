@@ -43,6 +43,9 @@
     "frontend-client-e2e": {
       "tags": [],
       "implicitDependencies": ["frontend-client"]
+    },
+    "ui-components": {
+      "tags": ["type:lib", "scope:ui-lib"]
     }
   }
 }
