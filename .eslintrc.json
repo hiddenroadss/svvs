@@ -14,11 +14,27 @@
             "depConstraints": [
               {
                 "sourceTag": "scope:frontend-admin",
-                "onlyDependOnLibsWithTags": ["scope:frontend-admin"]
+                "onlyDependOnLibsWithTags": ["scope:frontend-admin", "type:lib"]
               },
               {
                 "sourceTag": "scope:frontend-client",
-                "onlyDependOnLibsWithTags": ["scope:frontend-client", "type:lib"]
+                "onlyDependOnLibsWithTags": ["scope:frontend-client", "type:lib", "scope:shared"]
+              },
+              {
+                "sourceTag": "lib-type:data-access",
+                "onlyDependOnLibsWithTags": ["lib-type:data-access", "lib-type:utils"]
+              },
+              {
+                "sourceTag": "lib-type:feature",
+                "onlyDependOnLibsWithTags": ["lib-type:data-access", "lib-type:utils", "lib-type:feature", "lib-type:ui"]
+              },
+              {
+                "sourceTag": "lib-type:ui",
+                "onlyDependOnLibsWithTags": ["lib-type:ui", "lib-type:utils"]
+              },
+              {
+                "sourceTag": "lib-type:utils",
+                "onlyDependOnLibsWithTags": ["lib-type:utils"]
               }
             ]
           }
