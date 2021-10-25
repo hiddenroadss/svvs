@@ -44,6 +44,9 @@
       "tags": [],
       "implicitDependencies": ["frontend-client"]
     },
+    "shared-data-access-interfaces": {
+      "tags": []
+    },
     "ui-components": {
       "tags": ["type:lib", "scope:ui-lib"]
     }
